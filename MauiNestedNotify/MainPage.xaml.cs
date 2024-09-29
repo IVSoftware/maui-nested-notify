@@ -34,23 +34,24 @@ namespace MauiNestedNotify
         // It 'is not' an ObservableProperty however, unless you're swapping out settings
         // en masse e.g. because you have Profiles with their own individual Settings.
         public SettingsClass Settings { get; } = new SettingsClass(); // The "one and only" settings object.
-        public partial class SettingsClass : ObservableObject
+    }
+
+    partial class SettingsClass : ObservableObject
+    {
+        [ObservableProperty]
+        bool _useItalic;
+
+        [ObservableProperty]
+        FontAttributes _fontSetting;
+
+        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            [ObservableProperty]
-            bool _useItalic;
-
-            [ObservableProperty]
-            FontAttributes _fontSetting;
-
-            protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+            base.OnPropertyChanged(e);
+            switch (e.PropertyName)
             {
-                base.OnPropertyChanged(e);
-                switch (e.PropertyName)
-                {
-                    case nameof(UseItalic):
-                        FontSetting = UseItalic ? FontAttributes.Italic : FontAttributes.None;
-                        break;
-                }
+                case nameof(UseItalic):
+                    FontSetting = UseItalic ? FontAttributes.Italic : FontAttributes.None;
+                    break;
             }
         }
     }
