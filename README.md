@@ -70,35 +70,32 @@ partial class MainPageViewModel : ObservableObject
     [ObservableProperty]
     string _text = "Click Me";
 
-    // This is 'not' an observable property itself!
-    public Settings Settings { get; } = new Settings();
-}
-```
-
-#### Settings
-
-```
-public partial class Settings : ObservableObject
-{
-    [ObservableProperty]
-    bool _useItalic;
-
-    [ObservableProperty]
-    FontAttributes _fontSetting;
-
-    protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+    // This 'is' an ObservableObject because it provides INotifyPropertyChanged.
+    // It 'is not' an ObservableProperty however, unless you're swapping out settings
+    // en masse e.g. because you have Profiles with their own individual Settings.
+    public SettingsClass Settings { get; } = new SettingsClass(); // The "one and only" settings object.
+    public partial class SettingsClass : ObservableObject
     {
-        base.OnPropertyChanged(e);
-        switch (e.PropertyName)
+        [ObservableProperty]
+        bool _useItalic;
+
+        [ObservableProperty]
+        FontAttributes _fontSetting;
+
+        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            case nameof(UseItalic):
-                // You 'could' use IValueConverter, or just do this:
-                FontSetting = UseItalic ? FontAttributes.Italic : FontAttributes.None;
-                break;
+            base.OnPropertyChanged(e);
+            switch (e.PropertyName)
+            {
+                case nameof(UseItalic):
+                    FontSetting = UseItalic ? FontAttributes.Italic : FontAttributes.None;
+                    break;
+            }
         }
     }
-}
+}-
 ```
+
 
 [![button styled using a settings property][1]][1]
 
