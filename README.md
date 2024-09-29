@@ -1,4 +1,4 @@
-Looking at your code, the intention seems to be a `Settings` that is `ObservableObject` nested inside your `MainPageViewModel` which is also an `ObservableObject`. In xaml, the way you would bind to this is by referencing the nested object, e.g. `<CheckBox IsChecked="{Binding Settings.UseItalic}"/>`.
+Looking at your code, the intention seems to be a `Settings` that is `ObservableObject` nested inside your `MainPageViewModel` which is also an `ObservableObject`. In xaml, the way you would bind to this is by referencing the nested object, e.g. `Button <FontAttributes="{Binding Settings.FontSetting}">`.
 
 ___
 
@@ -100,7 +100,7 @@ public partial class Settings : ObservableObject
 }
 ```
 
-[![enter image description here][1]][1]
+[![button styled using a settings property][1]][1]
 
 
   [1]: https://i.sstatic.net/1KQO9am3.png
