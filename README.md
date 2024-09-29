@@ -111,5 +111,37 @@ Here, the `Text` of the button is a property of `MainPageViewModel`, but the _st
 
 [![button styled using a settings property][1]][1]
 
+___
+
+Finally, based on your comment:
+
+> I don’t have a deep understanding of how everything works yet
+
+In essence, all that's really being said when something is an observable object is that it implements `INotifyPropertyChanged`, and it's trivial to do this directly. Perhaps it will demystify things a little to show how one might implement an observable `Text` property without the toolkit.
+
+```
+class ObservableObjectFromScratch : INotifyPropertyChanged
+{
+    public string Text
+    {
+        get => _text;
+        set
+        {
+            if (!Equals(_text, value))
+            {
+                _text = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    string _text = string.Empty;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+    public event PropertyChangedEventHandler? PropertyChanged;
+}
+```
 
   [1]: https://i.sstatic.net/1KQO9am3.png

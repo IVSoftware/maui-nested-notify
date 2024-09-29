@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace MauiNestedNotify
@@ -54,5 +55,28 @@ namespace MauiNestedNotify
                     break;
             }
         }
+    }
+
+    class ObservableObjectFromScratch : INotifyPropertyChanged
+    {
+        public string Text
+        {
+            get => _text;
+            set
+            {
+                if (!Equals(_text, value))
+                {
+                    _text = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        string _text = string.Empty;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }
