@@ -1,4 +1,4 @@
-Looking at your code, the intention seems to be a `Settings` that is `ObservableObject` nested inside your `MainPageViewModel` which is also an `ObservableObject`. In xaml, the way you would bind to this is by referencing the nested object, e.g. `Button <FontAttributes="{Binding Settings.FontSetting}">`.
+Looking at your code, the intention seems to be having a `Settings` property that is `ObservableObject` nested inside your `MainPageViewModel` which is also an `ObservableObject`. In xaml, the way you would bind to this is by referencing the nested object, e.g. `Button <FontAttributes="{Binding Settings.FontSetting}">`.
 
 
 #### Main Page VM
@@ -24,6 +24,7 @@ partial class MainPageViewModel : ObservableObject
     // This 'is' an ObservableObject because it provides INotifyPropertyChanged.
     // It 'is not' an ObservableProperty however, unless you're swapping out settings
     // en masse e.g. because you have Profiles with their own individual Settings.
+    // ==================================================================================
     public SettingsClass Settings { get; } = new SettingsClass(); // The "one and only" settings object.
 }
 ```
