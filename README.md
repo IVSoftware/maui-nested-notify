@@ -114,6 +114,8 @@ Here, the `Text` of the button is a property of `MainPageViewModel`, but the _st
 
 ___
 
+##### Binding (in general)
+
 Finally, based on your comment:
 
 > I don’t have a deep understanding of how everything works yet
