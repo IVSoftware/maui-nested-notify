@@ -40,9 +40,7 @@
                     HeightRequest="30"
                     VerticalOptions="Start"
                     HorizontalOptions="Start"/>
-            </Grid>   
-            
+            </Grid>               
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

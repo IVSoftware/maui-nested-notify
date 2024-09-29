@@ -25,7 +25,6 @@ namespace MauiNestedNotify
             });
         }
         int _count = 0;
-
         public ICommand ButtonClickedCommand { get; }
 
         [ObservableProperty]
