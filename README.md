@@ -1,4 +1,4 @@
-Looking at your code, the intention seems to be having a `Settings` property that is `ObservableObject` nested inside your `MainPageViewModel` which is also an `ObservableObject`. In xaml, the way you would bind to this is by referencing the nested object, e.g. `Button <FontAttributes="{Binding Settings.FontSetting}">`.
+Looking at your code, the intention seems to be having a `Settings` property that is an `ObservableObject` nested inside your `MainPageViewModel` which is also an `ObservableObject`. In xaml, the way you would bind to this is by referencing the nested object, e.g. `Button <FontAttributes="{Binding Settings.FontSetting}">`.
 
 
 #### Main Page VM
