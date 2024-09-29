@@ -118,7 +118,7 @@ Finally, based on your comment:
 
 > I don’t have a deep understanding of how everything works yet
 
-In essence, all that's really being said when something is an observable object is that it implements `INotifyPropertyChanged`, and it's trivial to do this directly. Perhaps it will demystify things a little to show how one might implement an observable `Text` property without the toolkit.
+In essence, all that's really being said when something is an observable object is that it implements `INotifyPropertyChanged`, and it's trivial to do this directly. Perhaps it will demystify things to see how one might implement an observable `Text` property without the toolkit.
 
 ```
 class ObservableObjectFromScratch : INotifyPropertyChanged
